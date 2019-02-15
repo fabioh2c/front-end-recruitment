@@ -1,0 +1,39 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+    background-color: #efefef;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.produtos {height:calc(100vh); overflow-y: scroll; } 
+.produtos .flex { min-height: 370px !important; }
+.produtos .item { cursor: pointer; text-align: center;}
+.produtos .item img:hover { -moz-box-shadow: 0 0 20px #ccc; -webkit-box-shadow: 0 0 20px #ccc; box-shadow: 0 0 20px #ccc; }
+.produtos hr { border: 1px solid #dfc118;  width: 20px; margin: auto;}
+.produtos h4 { font-weight: bold !important; font-size: 15px; padding: 5px; }
+
+.sacola md-list {background-color: #202025; height:calc(100vh - 237px); overflow-y: scroll;}
+.sacola {background-color: #202025;}
+.sacola md-list-item h3 {color: #ffffff !important;}
+.sacola p {color: #969699 !important;}
+.sacola h2 {color: #ffffff;}
+.sacola h4 {color: #dfc118 !important; text-align: right; font-weight: bold !important; font-size: 15px !important; }
+.sacola md-list-item {  border-top: 1px solid #000000; }
+.sacola .md-button:hover md-icon svg { fill: #ffffff; }
+.sacola img {max-width: 60px; margin-right: 5px;}
+
+.subtotal h2 {color: #ffffff; color: #dfc118 !important; margin: 0px;}
+.subtotal span { font-size: 13px; margin-right: 10px;}    
+.subtotal div {margin-left: 10px; margin-right: 10px;}
+.subtotal { color: #969699!important; padding-bottom: 35px; padding-top: 30px; }
+.subtotal .btn-comprar { background-color: #000000 !important; color: #ffffff !important; font-weight: bold; }
+
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 85vw !important;
+    max-width: 50% !important;
+} 
+
+

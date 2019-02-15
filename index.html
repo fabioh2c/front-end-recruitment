@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sacola - NETSHOES Cart Test</title>
+    <link rel="stylesheet" href="css/estilo-sacola.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+    <script src="js/angular-locale_pt-br.js"></script>
+    <script src="js/angular-sacola.js"></script>
+</head>
+<body ng-app="LojaApp" ng-cloak>
+    <div ng-controller="LojaCtrl">
+        <md-content layout-align="center center" layout="row">
+            <div layout="column" flex="80" class="produtos">
+                <div ng-repeat="linha in produtos" layout="row" flex>
+                    <div ng-repeat="item in linha" ng-click="adicionarSacola(item)" flex="33" layout-margin class="item">
+                        <img ng-src="{{imagem}}" alt="{{ item.title }}" />
+                        <h3>{{item.title }}</h3>
+                        <P>{{item.style}}</P>
+                        <hr />
+                        <h4>{{(item.price | currency)}}</h4>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+        <md-sidenav class="md-sidenav-right" md-component-id="aba-sacola">
+            <md-content>
+                <div class="sacola"> 
+                    <div flex layout="row" layout-align="center center">
+                        <h2>SACOLA</h2>
+                    </div>
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="item in selecionados" ng-click="null">
+                            <img ng-src="{{imagem}}" alt="{{item.title }}" />
+                            <div class="md-list-item-text" layout="column">
+                                <div layout="row">
+                                    <div flex layout-align="start center" layout="row">
+                                        <h3>{{item.title }}</h3>
+                                    </div>
+                                    <div flex layout-align="end start" layout="row">
+                                        <md-button class="md-icon-button" ng-click="removerSacola(item)">
+                                            <md-icon md-svg-icon="imagens/sharp-clear.svg"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div layout="column" layout-align="start start" flex>
+                                        <p>{{item.tamanho}} | {{item.style}} </p>
+                                        <p>Quantidade: {{ item.qtd }}</p>
+                                    </div>
+                                    <div layout-align="end center" flex>
+                                        <h4>{{item.price | currency }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                    <div layout="column" class="subtotal">
+                        <div layout="row">
+                            <div flex>SUBTOTAL</div>
+                            <div flex layout="row" layout-align="end center">
+                                <h2>{{totalPagar | currency}}</h2>
+                            </div>
+                        </div>
+                        <div layout="row" flex layout-align="end center">
+                            <span>{{totalPagarParcelado}}</span>
+                        </div>
+                        <div layout="column" layout-align="center stretch" flex>
+                            <md-button class="btn-comprar" ng-click="fecharSacola()">Comprar</md-button>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </md-sidenav>
+    </div>
+</body>
+
+</html>
