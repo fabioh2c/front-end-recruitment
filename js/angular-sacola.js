@@ -9,6 +9,7 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
 
     var quantidade_parcelas = 10;
     var quantidade_colunas = 3;
+    $scope.totalItens=0;
 
     // Leitura do arquivo Json     
     $http.get('public/data/products.json').then(
@@ -19,6 +20,7 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
 
             if ($cookies.get("selecionados")) {
                 $scope.selecionados = JSON.parse($cookies.get("selecionados"));
+                $scope.totalItens = calcularTotalItens($scope.selecionados );
                 $cookies.remove('selecionados');
             }
 
@@ -51,6 +53,7 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
         }
 
         $scope.selecionados = arr;
+        $scope.totalItens+=1;
         $scope.totalPagar = calcularTotal($scope.selecionados);
         $scope.totalPagarParcelado = "OU EM ATÉ "+quantidade_parcelas+"X " + $filter('currency')($scope.totalPagar / quantidade_parcelas); 
         //Mostra a sacola
@@ -61,6 +64,7 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
 
     //Remoção de produto da sacola
     $scope.removerSacola = function (item) {
+        $scope.totalItens= $scope.totalItens - item.qtd;    
         $scope.selecionados.splice($scope.selecionados.indexOf(item), 1);
         $scope.totalPagar = calcularTotal($scope.selecionados);
         $scope.totalPagarParcelado = "OU EM ATÉ "+quantidade_parcelas+"X " + $filter('currency')($scope.totalPagar / quantidade_parcelas);
@@ -72,6 +76,7 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
     $scope.fecharSacola = function () {
         $mdSidenav('aba-sacola').close();
         $scope.selecionados = [];
+        $scope.totalItens=0;
         $cookies.remove('selecionados');
 
     };
@@ -81,6 +86,14 @@ app.controller('LojaCtrl', function ($scope, $filter, $mdSidenav, $cookies, $htt
         var total = 0;
         for (var index in selecionados) {
             total += selecionados[index].price * selecionados[index].qtd;
+        }
+        return total;
+    }
+    //Cálculo do total de itens selecionados
+    function calcularTotalItens(selecionados) {
+        var total = 0;
+        for (var index in selecionados) {
+            total += $scope.selecionados[index].qtd;
         }
         return total;
     }

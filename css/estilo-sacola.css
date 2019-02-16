@@ -21,6 +21,9 @@ body {
 .sacola md-list-item {  border-top: 1px solid #000000; }
 .sacola .md-button:hover md-icon svg { fill: #ffffff; }
 .sacola img {max-width: 60px; margin-right: 5px;}
+.sacola .img-sacola {position:relative;}
+.sacola .img-sacola span {font-size: 12px; font-weight: bold; position:absolute; top:30px; left:28px;}
+
 
 .subtotal h2 {color: #ffffff; color: #dfc118 !important; margin: 0px;}
 .subtotal span { font-size: 13px; margin-right: 10px;}    
